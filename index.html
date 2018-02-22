@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+  <meta charset="utf-8">
+  <title>无缝轮播</title>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .box {
+      width: 400px;
+      height: 400px;
+      margin: 30px auto;
+      overflow: hidden;
+    }
+
+    .imgs {
+      position: relative;
+
+    }
+
+    .imgs>img {
+      position: absolute;
+      width: 100%;
+      transition: all .5s;
+    }
+
+    .imgs img.center {
+      z-index: 1;
+    }
+
+    .imgs img.left {
+      transform: translateX(-100%);
+    }
+
+    .imgs img.right {
+      transform: translateX(100%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="imgs">
+      <img src="1.png" alt="图片丢了">
+      <img src="2.png" alt="图片丢了">
+      <img src="3.png" alt="图片丢了">
+      <img src="4.png" alt="图片丢了">
+    </div>
+  </div>
+  <script>
+    init()
+    var n = 1
+    setInterval(function(){
+      $(`.imgs  img:nth-child(${getN(n)})`).removeClass('center').addClass('left').one('transitionend',function(){
+        $(this).removeClass('left').addClass('right')
+      })
+      $(`.imgs  img:nth-child(${getN(n+1)})`).removeClass('right').addClass('center')
+      n++
+    },2000)
+    function getN(n) {
+      if (n > 4) {
+        n = n % 4
+        if (n === 0) {
+          n = 4
+        }
+      }
+      return n
+    }
+    // function goLeft(n) {
+    //   console.log($('.imgs img:nth-child(1)'))
+    //   return $('.imgs img:nth-child(n)').addClass('left').removeClass('center')
+    // }
+
+
+
+    function init() {
+      $('.imgs img:first-child').addClass('center').siblings().addClass('right')
+    }
+  </script>
+</body>
+
+</html>

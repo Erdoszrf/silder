@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+  <style>
+    .dog {
+      display: flex;
+      align-items: flex-start;
+      transition: all 0.3s;
+    }
+
+    .box {
+      margin: 0 auto;
+      width: 500px;
+      overflow: hidden;
+    }
+
+    img {
+      vertical-align: top;
+    }
+
+    .buttons {
+      margin: 0 auto;
+      width: 200px;
+    }
+
+    .red {
+      color: red;
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="box">
+    <div class="dog">
+      <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516681592936&di=2c6beaf4a6c00fd333566ec771cdbfc1&imgtype=jpg&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D1963297633%2C3012022475%26fm%3D214%26gp%3D0.jpg"
+        alt="">
+      <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1078425506,1374668072&fm=27&gp=0.jpg" alt="">
+      <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516681928858&di=169559250362caaa27d1d8bbcbbee821&imgtype=0&src=http%3A%2F%2Fimg.go007.com%2F2017%2F02%2F20%2F0b24e6e71b9a39cf_0.jpg"
+        alt="">
+      <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516681928859&di=36771af426106908615cda4d71e1a45b&imgtype=0&src=http%3A%2F%2Fwww.pujia8.com%2Fstatic%2Fupload%2F20140220143832_13.jpg"
+        alt="">
+    </div>
+  </div>
+
+  <div class="buttons">
+    <span class="red">第1张</span>
+    <span>第2张</span>
+    <span>第3张</span>
+    <span>第4张</span>
+  </div>
+  <script>
+    var allbutton = $('.buttons > span')
+    allbutton.on('click', function (e) {
+      var p = $(e.currentTarget).index() * -500
+      $('.dog').css({
+        transform: 'translate(' + p + 'px)'
+      })
+      $(this).siblings().removeClass('red')
+      $(this).addClass('red')
+    })
+
+    var n = 0;
+    var size = allbutton.length
+    allbutton.eq(n % size).trigger('click')
+
+
+    var timerId = setTimer()
+
+    function setTimer() {
+      return setInterval(() => {
+        n += 1
+        allbutton.eq(n % size).trigger('click')
+      }, 3000)
+    }
+    $('.box').on('mouseenter',function(){
+      clearTimeout(timerId)
+    })
+    $('.box').on('mouseleave',function(){
+      setTimer()
+    })
+  </script>
+</body>
+
+</html>
