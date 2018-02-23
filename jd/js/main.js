@@ -1,4 +1,4 @@
-
+// 广告栏js
 $('.headad>.closebutton').on('click',function(){
     $('.headad').addClass('fadead')
     var hidden = function(){
@@ -7,7 +7,21 @@ $('.headad>.closebutton').on('click',function(){
         },500);}
     hidden()
 })
+// 菜单栏js
+// $('.menu > li').on('mouseenter',function(e){
+// 	var $current = $(e.currentTarget)
+// 	var index = $current.attr('data-index')
+// 	var indexNumber = +index
+// 	$('.submenu').children('li.active').removeClass('active')
+// $('.submenu').children('li').eq(indexNumber).addClass('active')
+// })
+// $('.menulistwrapper').on('mouseleave',function(){
+// 	$('.submenu').children('li.active').removeClass('active')
+// })
 
+
+
+// 大图自动轮播js
 $(function(){
     $("#slides").slidesjs({
         width: 730,
@@ -77,7 +91,7 @@ function popout(e){
     $('.iframe-content').eq(indexNumber).addClass('active')
     $('.iframe-recharge').animate({top: '0px'},500,function(){})
 }
-
+//小图手动轮播js
 $(function(){
     $(".onsaleslides").slidesjs({
         width: 1000,
@@ -95,7 +109,7 @@ $(function(){
         }
     });
 });
-
+//回到顶部js
 $('.gototop').click(function(){
     $('body').animate({scrollTop:0});
-}) 
+})
